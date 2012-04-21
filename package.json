@@ -1,0 +1,44 @@
+{
+    "name": "rbs",
+    "version": "0.1.0",
+    "description": "JavaScript static integrated realtime build system.",
+    "keywords": [
+      "javascript",
+      "css",
+      "commonjs"
+    ],
+    "maintainers": [{
+      "name": "jindw",
+      "email": "jindw@xidea.org",
+      "url": "http://www.xidea.org"
+    }],
+    "contributors": [
+    ],
+    "bugs": {
+        "email": "jindw@xidea.org",
+        "url": "https://github.com/jindw/rbs/issues"
+    },
+    "licenses": [
+        {
+            "type": "LGPL",
+            "url": "http://www.gnu.org/licenses/lgpl.html"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "svn",
+            "url": "git@github.com:jindw/rbs.git"
+        }
+    ],
+    "implements": [
+    ],
+    "dependencies": {
+    	"cssom":">"*",
+    	"xmldom">"*"
+    },
+    "engines" : { "node" : ">=0.1" },
+    "directories": {
+        "lib": "./lib"
+    },
+    "main": "./lib/index.js"
+}
