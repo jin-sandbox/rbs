@@ -42,7 +42,7 @@ require('http').createServer(function (req, response) {
 	    	writeNotFound(filepath,response); 
 	    }
 	});
-}).listen(2012,'127.0.0.1');
+}).listen(2012);
 console.log('lite test server is started: http://'+('127.0.0.1')+':' + (2012) );
 
 function writeNotFound(filepath,response,msg){
