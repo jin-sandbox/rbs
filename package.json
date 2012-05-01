@@ -1,7 +1,7 @@
 {
     "name": "rbs",
     "version": "0.1.0",
-    "description": "JavaScript static integrated realtime build system.",
+    "description": "Realtime Build System for web development",
     "keywords": [
       "javascript",
       "css",
@@ -33,8 +33,7 @@
     "implements": [
     ],
     "dependencies": {
-    	"cssom":">"*",
-    	"xmldom">"*"
+    	"xmldom":"*"
     },
     "engines" : { "node" : ">=0.1" },
     "directories": {

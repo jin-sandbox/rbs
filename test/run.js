@@ -10,7 +10,19 @@ var rbs = new RBS(root);
 require('http').createServer(function (req, response) {
 	var url = req.url.replace(/[?#][\s\S]*/,'');
 	var filepath = Path.join(root,url);
+	var uap = /\/[\w][^\/]*\.css$/
+	if(url.match(uap)){
+		var uar = /^o(?=pera)|msie [6-8]|ms(?=ie \d+)|webkit|^moz(?=.+firefox)|khtml/.exec(
+			req.headers['user-agent'].toLowerCase());
+		if(uar){
+			uar = '-'+uar[0].replace(/msie (\d)/,'ie$1')+'-$&';
+		}else{
+			uar = '-ie-$&';
+		}
+		url = url.replace(/[^\/]*\.css$/,uar);
+	}
 	console.info('request:',url)
+	
 	FS.stat(filepath,function(error,stats){
 	    if(stats){
 	    	if(stats.isDirectory()){
@@ -42,6 +54,7 @@ function writeNotFound(filepath,response,msg){
 function writeDir(url,filepath,response){
 	if(/\/$/.test(url)){
 		FS.readdir(filepath, function(err, files) {  
+			response.write('<meta content="text/html; charset=UTF-8" http-equiv="content-type"><span>'+filepath+"</span>&#160;<a href='../' title='返回上一级'>↑</a><hr/>",'utf8');
 			for(var i=0;i<files.length;i++){
 				response.write("<a href='"+files[i]+"'>"+files[i]+'</a><hr/>','utf8');
 			}
