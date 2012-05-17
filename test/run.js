@@ -31,7 +31,29 @@ require('http').createServer(function (req, response) {
 	    }
 	    var text = rbs.getContentAsBinary(url);
 	    if(text){
-	    	response.writeHead(200, {'Content-Type' : 'text/html;charset=utf-8'});
+	    	//text/x-component .htc
+	    	var type = url.replace(/^.*\.(\w+)(?:[;?#].*)?$/,'$1');
+	    	switch(type){
+	    	case 'htc':
+	    		console.log('htc:',req.headers['host'])
+	    		type = 'text/x-component';
+	    		break;
+	    	case 'js':
+	    		type = 'text/javascript;charset=utf-8'
+	    		break;
+	    	case 'css':
+	    		type = 'text/css;charset=utf-8'
+	    		break;
+	    	case 'html':
+	    	case 'htm':
+	    		type = 'text/html;charset=utf-8'
+	    		break;
+	    	default:
+	    		console.log('unknow:' ,type)
+	    		type = 'text/html;charset=utf-8'
+	    	}
+	    	response.writeHead(200, {'Content-Type' : type
+	    	});
 	    	response.write(text);
 	    	response.end();
 	    	return;
@@ -46,7 +68,7 @@ require('http').createServer(function (req, response) {
 console.log('lite test server is started: http://'+('127.0.0.1')+':' + (2012) );
 
 function writeNotFound(filepath,response,msg){
-     response.writeHead(404, {"Content-Type": "text/plain"});    
+     response.writeHead(200, {"Content-Type": "text/plain"});    
      response.write("404 Not Found \n filepath:"+filepath+'\n'+(msg||''));    
      response.end();    
 }
@@ -54,6 +76,7 @@ function writeNotFound(filepath,response,msg){
 function writeDir(url,filepath,response){
 	if(/\/$/.test(url)){
 		FS.readdir(filepath, function(err, files) {  
+     		response.writeHead(200, {"Content-Type": "text/html;charset=UTF-8"}); 
 			response.write('<meta content="text/html; charset=UTF-8" http-equiv="content-type"><span>'+filepath+"</span>&#160;<a href='../' title='返回上一级'>↑</a><hr/>",'utf8');
 			for(var i=0;i<files.length;i++){
 				response.write("<a href='"+files[i]+"'>"+files[i]+'</a><hr/>','utf8');
