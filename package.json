@@ -24,16 +24,11 @@
             "url": "http://www.gnu.org/licenses/lgpl.html"
         }
     ],
-    "repositories": [
-        {
-            "type": "svn",
-            "url": "git@github.com:jindw/rbs.git"
-        }
-    ],
+    "repository": "git@github.com:jindw/rbs.git",
     "implements": [
     ],
     "dependencies": {
-    	"xmldom":"*"
+    	"zipstream","*"
     },
     "engines" : { "node" : ">=0.1" },
     "directories": {

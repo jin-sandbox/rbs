@@ -1,4 +1,6 @@
 var Path = require('path')
-var root = Path.resolve('./');
-var startRbsServer = require('../lib/server').startRbsServer;
-exports.rbs = startRbsServer(root);
+var startServer = require('../lib/server').startServer;
+var RBS = require('../lib/rbs').RBS;
+var rbs = new RBS();
+startServer(rbs);
+exports.rbs = rbs;
