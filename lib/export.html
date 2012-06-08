@@ -3,7 +3,18 @@
 <body>
 <form method="post">
 <style>
-	textarea{width:80%;height:80%}
+html,body{
+	text-align:right;
+	width:700px;
+	margin:auto;padding:0;
+	background:#666;
+}
+body{
+	border:1px inset #333;
+    background:#fefefe;
+    border:3px double #DDD;
+}
+textarea{width:99%;height:90%}
 </style>
 <script>
 function replacer(a,dir,name){
@@ -11,9 +22,11 @@ function replacer(a,dir,name){
 } 
 function cssBranch(f){
 	f.reset();
+	f.reset_.disabled = false;
 	f.list.value = f.list.value.replace(/^(.*\/)([^\-\s].*.css)$/gm,replacer);
 }</script>
+<input type="reset" name="reset_" disabled value="恢复" onclick="this.form.reset();this.disabled=true"/>
 <input type="button" value="生成差异化CSS" onclick="cssBranch(this.form)"/>
 <input type="submit" value="导出"/>
-<p><textarea name="list">${content}</textarea><p>
+<div><textarea name="list" rows="28">${content}</textarea><div>
 </form></body></html>
