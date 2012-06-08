@@ -14,19 +14,45 @@ body{
     background:#fefefe;
     border:3px double #DDD;
 }
+label{
+	border:1px inset #333;
+	background:#ddd;
+	margin:5px;
+}
+input{
+	padding:0 22px;
+}
 textarea{width:99%;height:90%}
 </style>
 <script>
-function replacer(a,dir,name){
-	return '-ie6-ie7-ie8-ie9-ms-webkit-moz-o'.replace(/-\w+/g,dir+'$&-'+name+'\n')
+function addPrefix(a,dir,name){
+	return name.charAt()=='-'?a:
+			'-ie6-ie7-ie8-ie9-ms-webkit-moz-o'.replace(/-\w+/g,dir+'$&-'+name+'\n')
 } 
-function cssBranch(f){
-	f.reset();
-	f.reset_.disabled = false;
-	f.list.value = f.list.value.replace(/^(.*\/)([^\-\s].*.css)$/gm,replacer);
-}</script>
-<input type="reset" name="reset_" disabled value="恢复" onclick="this.form.reset();this.disabled=true"/>
-<input type="button" value="生成差异化CSS" onclick="cssBranch(this.form)"/>
+function removePrefix(a,dir,name){
+	return a.replace(/\/-\w+-([^/]+)$/,'/$1');
+} 
+function toBranch(c,exp){
+	var list = c.form.list;
+	if(c.checked){
+		list.value = list.value.replace(exp,addPrefix);
+	}else{
+		list.value = list.value.replace(exp,removePrefix).replace(/(^.+$)([\r\n])+(\1[\r\n]+)*/mg,'$1$2');
+	}
+}
+
+function addClosure(c){
+	var list = c.form.list;
+	if(c.checked){
+		list.value = list.value.replace(/^(.+?).js$/gm,'$&\n$1__define__.js');
+	}else{
+		list.value = list.value.replace(/^(.+?)__define__.js$[\r\n]+/gm,'');
+	}
+}
+</script>
+<label>差异化CSS<input type="checkbox" onclick="toBranch(this,/^(.+?)([^\/]+\.css)$/gm)"/></label>
+<label>差异化JS<input type="checkbox" value="差异化JS" onclick="toBranch(this,/^(.+?)([^\/]+\.js)$/gm)"/></label>
+<label>JS-&gt;closure<input type="checkbox" value="JS-&gt;closure" onclick="addClosure(this)"/></label>
 <input type="submit" value="导出"/>
-<div><textarea name="list" rows="28">${content}</textarea><div>
+<div><textarea name="list" rows="28" readonly>${content}</textarea><div>
 </form></body></html>
