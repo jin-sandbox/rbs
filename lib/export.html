@@ -1,6 +1,6 @@
 <html>
 <head><title>==静态站点导出==</title><head>
-<body>
+<body onload="var cb = document.getElementById('cssBranck');cb.checked = false;cb.click();">
 <form method="post">
 <style>
 html,body{
@@ -50,7 +50,7 @@ function addClosure(c){
 	}
 }
 </script>
-<label>差异化CSS<input type="checkbox" onclick="toBranch(this,/^(.+?)([^\/]+\.css)$/gm)"/></label>
+<label>差异化CSS<input id="cssBranck" type="checkbox" onclick="toBranch(this,/^(.+?)([^\/]+\.css)$/gm)"/></label>
 <label>差异化JS<input type="checkbox" value="差异化JS" onclick="toBranch(this,/^(.+?)([^\/]+\.js)$/gm)"/></label>
 <label>JS-&gt;closure<input type="checkbox" value="JS-&gt;closure" onclick="addClosure(this)"/></label>
 <input type="submit" value="导出"/>
