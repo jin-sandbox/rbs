@@ -1,38 +1,15 @@
 {
     "name": "rbs",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "description": "Realtime Build System for web development",
-    "keywords": [
-      "javascript",
-      "css",
-      "commonjs"
-    ],
-    "maintainers": [{
-      "name": "jindw",
-      "email": "jindw@xidea.org",
-      "url": "http://www.xidea.org"
-    }],
-    "contributors": [
-    ],
-    "bugs": {
-        "email": "jindw@xidea.org",
-        "url": "https://github.com/jindw/rbs/issues"
-    },
-    "licenses": [
-        {
-            "type": "LGPL",
-            "url": "http://www.gnu.org/licenses/lgpl.html"
-        }
-    ],
-    "repository": "git@github.com:jindw/rbs.git",
-    "implements": [
-    ],
-    "dependencies": {
-    	"zipstream":"*"
-    },
+    "keywords": ["javascript","css","commonjs"],
+	"author": "jindw <jindw@xidea.org> (http://www.xidea.org)",
+    "repository": "git://github.com/jindw/rbs.git",
+    "main": "./lib/index.js",
     "engines" : { "node" : ">=0.1" },
-    "directories": {
-        "lib": "./lib"
-    },
-    "main": "./lib/index.js"
+    "dependencies": {"zipstream":"*"},
+    "maintainers": [{"name":"jindw","email":"jindw@xidea.org","url":"http://www.xidea.org"}],
+    "contributors": [],
+    "bugs": {"email": "jindw@xidea.org","url": "https://github.com/jindw/jsi/issues"},
+    "licenses": [{"type": "LGPL","url": "http://www.gnu.org/licenses/lgpl.html"}]
 }
