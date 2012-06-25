@@ -112,7 +112,7 @@ body div:hover{
 		var i = as.length;
 		while(i--){
 			var a  = as.item(i);
-			var n = a.getAttribute('href');
+			var n = a.getAttribute('href').replace(/.*\//,'');
 			if(/^[^-].*\.css$/i.test(n)){
 				var tpl = '<li><a href="-$&-'+n+'">-$&-'+n+'</a></li>';
 				var html = '<span>[css]</span><ul>'
