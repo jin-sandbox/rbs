@@ -1,6 +1,6 @@
 {
     "name": "rbs",
-    "version": "0.1.14",
+    "version": "0.1.15",
     "description": "Realtime Build System for web development",
     "keywords": ["javascript","css","commonjs"],
 	"author": "jindw <jindw@xidea.org> (http://www.xidea.org)",
