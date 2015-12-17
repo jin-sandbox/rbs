@@ -5,6 +5,4 @@ Functions
 Install:
 	npm install rbs
 Example:
-	require('rbs/test/run');
-
-
+	require('rbs/test');
